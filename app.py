@@ -38,8 +38,10 @@ def create_todo():
     error = False
     body = {}
     try:
-        description = request.get_json()['description']
-        todo = Todo(description=description)
+        data = request.get_json()
+        description = data['description']
+        list_id = data['list_id']
+        todo = Todo(description=description, list_id=list_id)
         db.session.add(todo)
         db.session.commit()
         body['description'] = todo.description
