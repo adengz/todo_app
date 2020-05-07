@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="error" class="hidden">Something went wrong!</div>
-    <form id="form" method="post" action="/todos/create">
+    <form id="form">
       <input id="description" type="text" name="description" />
       <input type="submit" value="Create" />
     </form>
@@ -33,10 +33,8 @@
             'Content-Type': 'application/json',
           }
         })
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(jsonResponse) {
+        .then(response => response.json())
+        .then(jsonResponse => {
           console.log('response', jsonResponse);
           li = document.createElement('li');
           li.innerText = jsonResponse['description'];
